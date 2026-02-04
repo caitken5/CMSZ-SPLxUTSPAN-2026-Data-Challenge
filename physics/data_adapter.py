@@ -1,6 +1,6 @@
 """Data adapter module for physics simulations."""
 
-from physics.constants import FEET_TO_METERS
+from physics.constants import FEET_TO_METERS, INCHES_TO_METERS
 
 
 def parse_array_json(s):
