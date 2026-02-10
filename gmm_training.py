@@ -127,11 +127,11 @@ def export_per_shot_outputs(
         X_shot = dp.T  # (T, n_signals)
         Xs = scaler.transform(X_shot)
 
-        labels = gmm.predict(Xs)  # (T,)
-        proba = gmm.predict_proba(Xs)  # (T, K)
+        labels.append(gmm.predict(Xs))  # (T,)
+        probs.append(gmm.predict_proba(Xs))  # (T, K)
 
 
-    return labels, proba
+    return labels, probs
 
 
 #%% Use the above functions on train data
