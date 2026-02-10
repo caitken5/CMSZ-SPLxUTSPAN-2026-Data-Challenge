@@ -111,7 +111,6 @@ def fit_scaler_gmm(X: np.ndarray, n_components: int, seed: int) -> Tuple[Standar
     gmm.fit(X_scaled)
     return scaler, gmm
 
-
 def export_per_shot_outputs(
     shots: List[np.ndarray],
     scaler: StandardScaler,
@@ -119,10 +118,12 @@ def export_per_shot_outputs(
 ) -> None:
     """
     For each shot, exports:
-      - labels: shape (T,)
-      - proba : shape (T, K)
+      - labels: shape (T,)*number of shots
+      - proba : shape (T, K)*number of shots
     where K = n_components
     """
+    labels = []
+    probs = []
     for idx, dp in enumerate(shots):
         X_shot = dp.T  # (T, n_signals)
         Xs = scaler.transform(X_shot)
