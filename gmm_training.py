@@ -135,12 +135,3 @@ def export_per_shot_outputs(
     return labels, probs
 
 
-#%% Use the above functions on train data
-csv_path = "train.csv"
-cols_to_remove = ["id", "shot_id", "angle", "depth", "left_right"]
-shots, valid_row_idx, signal_cols = load_shots_from_csv(csv_path, cols_to_remove)
-X = stack_timepoints(shots)
-scaler, gmm = fit_scaler_gmm(X, n_components=5, seed=42)
-export_per_shot_outputs(shots, scaler, gmm)
-
-

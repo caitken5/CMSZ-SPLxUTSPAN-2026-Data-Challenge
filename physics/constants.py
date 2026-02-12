@@ -25,9 +25,6 @@ METERS_TO_INCHES = 1.0 / INCHES_TO_METERS
 R_HOOP_WORLD = torch.tensor([5.25, -25.0, 10.0], dtype=torch.float32) * FEET_TO_METERS  # vector provided by competition (meters)
 HOOP_DIAMETER = 18.0 * INCHES_TO_METERS # 18 inches
 
-
-Z_RIM = 10*FEET_TO_METERS
-
 # Transformation from WORLD frame to RIM (hoop) frame.
 # The rim frame is right-handed and rotated counter-clockwise 90° about +z
 # relative to the world frame. If the rim axes are rotated by +theta relative
@@ -45,6 +42,11 @@ R_WORLD_TO_RIM = torch.tensor([
 T_WORLD_TO_RIM = torch.eye(4, dtype=torch.float32)
 T_WORLD_TO_RIM[:3, :3] = R_WORLD_TO_RIM
 T_WORLD_TO_RIM[:3, 3] = -R_WORLD_TO_RIM @ R_HOOP_WORLD
+
+# Scaling Factors
+Z_RIM = 10*FEET_TO_METERS
+X_COURT = 94*FEET_TO_METERS
+Y_COURT = 50*FEET_TO_METERS
 
 # Useful scales (for nondimensionalization if needed)
 L_SCALE = 1.0           # meters

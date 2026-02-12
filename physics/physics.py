@@ -1,7 +1,11 @@
 """Physics module."""
 
 import torch
-from .constants import AIR_DENSITY, BALL_AREA, BALL_MASS, BALL_RADIUS, DRAG_COEFFICIENT
+from .constants import AIR_DENSITY, BALL_AREA, BALL_MASS, BALL_RADIUS, DRAG_COEFFICIENT, g
+
+# alpha_d: drag acceleration coefficient
+# alpha_l: magnus acceleration coefficient
+# These are calculated elsewhere so small adjustments can be made to constants.
 
 def drag_acceleration(v, alpha_d):
     """
@@ -19,3 +23,9 @@ def magnus_acceleration(v, omega, alpha_l):
     """
 
     return alpha_l*torch.cross(omega, v, dim=-1)
+
+def gravity_acceleration(batch_size):
+    """
+    returns: (batch_size, 3)
+    """
+    return g.expand(batch_size, 3)

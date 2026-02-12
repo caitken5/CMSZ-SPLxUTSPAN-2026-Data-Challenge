@@ -144,7 +144,7 @@ def estimate_ball_motion(
 
 	return v_avg, omega_avg, pos_avg
 
-
+# TODO: Check if this scaling works well.
 def scale_kinematics(
 	positions: np.ndarray,
 	velocities: Optional[np.ndarray] = None,

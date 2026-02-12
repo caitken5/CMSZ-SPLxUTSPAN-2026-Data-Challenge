@@ -1,6 +1,6 @@
 """Data adapter module for physics simulations."""
 
-from physics.constants import FEET_TO_METERS, METERS_TO_FEET, INCHES_TO_METERS, METERS_TO_INCHES
+from .constants import FEET_TO_METERS, METERS_TO_FEET, INCHES_TO_METERS, METERS_TO_INCHES
 
 def ft_to_m(x):
     return x * FEET_TO_METERS
