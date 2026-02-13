@@ -21,11 +21,14 @@ def _skew(r: np.ndarray) -> np.ndarray:
 	r: (..., 3)
 	returns: (..., 3, 3)
 	"""
-	rx, ry, rz = r[..., 0], r[..., 1], r[..., 2]
-	mat = np.array([[0.0, -rz, ry], [rz, 0.0, -rx], [-ry, rx, 0.0]])
-	# If r was batched, broadcast accordingly
+	r = np.asarray(r, dtype=float)
 	if r.ndim == 1:
-		return mat
+		rx, ry, rz = r[0], r[1], r[2]
+		return np.array(
+			[[0.0, -rz, ry], [rz, 0.0, -rx], [-ry, rx, 0.0]],
+			dtype=float,
+		)
+	# r is batched (...,3) — create stacked matrices
 	# r is (...,3) — create stacked matrices
 	mats = np.empty(r.shape[:-1] + (3, 3), dtype=float)
 	mats[..., 0, 0] = 0.0

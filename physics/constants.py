@@ -12,7 +12,8 @@ BALL_AREA = torch.pi * BALL_RADIUS**2
 
 AIR_DENSITY = 1.225     # kg/m^3
 DRAG_COEFFICIENT = 0.47 # estimate for sphere
-
+SPIN_FACTOR = 1.2        # empirical factor for Magnus effect (lift force proportional to spin)
+CL_MAX = 0.4            # maximum lift coefficient for Magnus effect (only tunable through the spin factor)
 
 # Length
 FEET_TO_METERS = 0.3048
